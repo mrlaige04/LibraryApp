@@ -1,9 +1,16 @@
+using Library.API.Middlewares;
 using Library.Data.EF.Context;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddSwaggerGen();
-//builder.WebHost.UseUrls($"http://{builder.Configuration["baseUrl"]}");
+
+//builder.Services.AddHttpLogging(opt =>
+//{
+//    opt.LoggingFields = HttpLoggingFields.RequestQuery | HttpLoggingFields.RequestBody  ;
+//});
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -24,7 +31,23 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
+
+// TODO : Add exception handling middleware
+app.UseExceptionHandler(x => x.Run(async context =>
+{
+    context.Response.StatusCode = 500;
+    await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
+}));
+
+
+
+//app.UseHttpLogging();
+app.UseRequestLogger();
+
 app.UseHttpsRedirection();
+
 
 
 app.MapControllers();

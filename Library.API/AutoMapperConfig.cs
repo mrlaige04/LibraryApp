@@ -9,7 +9,6 @@ namespace Library.API
     {
         public AutoMapperConfig()
         {
-            //CreateMap<T1, T2>();
             CreateMap<BookInput, Book>();
             CreateMap<ReviewInput, Review>();
             CreateMap<RatingInput, Rating>();

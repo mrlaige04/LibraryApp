@@ -250,7 +250,7 @@ namespace Library.API.Controllers
          */
         [HttpPost]
         [Route("books/save")]
-        public async Task<IActionResult> SaveBook([FromBody] BookInput book) // Use Book DTO
+        public async Task<IActionResult> SaveBook([FromBody] BookInput book) 
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var bookEntity = _mapper.Map<BookInput, Book>(book);
@@ -299,7 +299,7 @@ namespace Library.API.Controllers
          */
         [HttpPut]
         [Route("books/{id}/review")]
-        public async Task<IActionResult> SaveReview(int id, [FromBody] ReviewInput review) // Use Review DTO
+        public async Task<IActionResult> SaveReview(int id, [FromBody] ReviewInput review) 
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             
@@ -339,7 +339,7 @@ namespace Library.API.Controllers
          */
         [HttpPut]
         [Route("books/{id}/rate")]
-        public async Task<IActionResult> RateBook(int id, [FromBody] RatingInput rating) // Use Rating DTO
+        public async Task<IActionResult> RateBook(int id, [FromBody] RatingInput rating) 
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
