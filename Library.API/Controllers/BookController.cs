@@ -47,6 +47,11 @@ namespace Library.API.Controllers
         [Route("books")]
         public async Task<IActionResult> GetBooks([FromQuery] string order)
         {
+            if (order != "title" && order != "author")
+            {
+                return BadRequest("Invalid order value");
+            }
+            
             var books = await _context.Books
                 .Include(b => b.Ratings)
                 .Include(b => b.Reviews)
@@ -350,8 +355,7 @@ namespace Library.API.Controllers
             if (book == null) return NotFound();
 
             var ratingEntity = new Rating()
-            {           
-                
+            {                           
                 score = rating.rating,
                 bookId = id
             };
@@ -364,10 +368,10 @@ namespace Library.API.Controllers
             }
             while (await _context.Books.Select(x => x.id).ContainsAsync(idEntity));
                         
-
             ratingEntity.id = idEntity;
             book.Ratings.Add(ratingEntity);
             await _context.SaveChangesAsync();
+            
             return Ok();
         }
     }
