@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using System.Text.Json;
 
 namespace Library.API.Middlewares
@@ -49,5 +49,6 @@ namespace Library.API.Middlewares
         {
             return builder.UseMiddleware<ErrorHandler>();
         }
+
     }
 }
