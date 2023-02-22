@@ -11,4 +11,9 @@ class MakeARate {
   }
 }
 
-export {CreateBook}
+class MakeAReview {
+  constructor(public message: string, public reviewer: string) {
+  }
+}
+
+export {CreateBook, MakeARate, MakeAReview}
