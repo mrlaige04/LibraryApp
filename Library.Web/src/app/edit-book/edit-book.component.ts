@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-edit-book',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent {
+
+  title = "";
+  genre = "";
+  author = "";
+  content = "";
+
+  clearForm(form: HTMLFormElement) {
+    form.reset()
+  }
 
 }

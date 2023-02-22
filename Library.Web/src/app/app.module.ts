@@ -9,6 +9,7 @@ import { BookListItemComponent } from './book-list-item/book-list-item.component
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
 
     BrowserAnimationsModule,
+    FormsModule,
 
   ],
   providers: [],
