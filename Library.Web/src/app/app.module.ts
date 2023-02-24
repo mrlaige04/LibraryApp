@@ -9,7 +9,11 @@ import { BookListItemComponent } from './book-list-item/book-list-item.component
 import { EditBookComponent } from './edit-book/edit-book.component';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
+import { DeleteBookComponent } from './delete-book/delete-book.component';
+import {HttpService} from "./services/http.service";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {ɵEmptyOutletComponent} from "@angular/router";
 
 
 @NgModule({
@@ -20,15 +24,16 @@ import {FormsModule} from "@angular/forms";
     BookListItemComponent,
     EditBookComponent,
     ViewBookComponent,
+    DeleteBookComponent
 
   ],
-  imports: [
-    BrowserModule,
-
-    BrowserAnimationsModule,
-    FormsModule,
-
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        ɵEmptyOutletComponent,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

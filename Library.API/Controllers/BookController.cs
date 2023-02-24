@@ -104,7 +104,7 @@ namespace Library.API.Controllers
          */
         [HttpGet]
         [Route("recommended")]
-        public async Task<IActionResult> GetRecommended(string genre)
+        public async Task<IActionResult> GetRecommended(string? genre)
         {
             var books = _context.Books
                 .Include(b => b.Ratings)
@@ -260,13 +260,35 @@ namespace Library.API.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var bookEntity = _mapper.Map<BookInput, Book>(book);
 
-            if (bookEntity.id == 0 || 
-                await _context.Books.FirstOrDefaultAsync(x=>x.id!=bookEntity.id) == null
-                ) _context.Books.Add(bookEntity);
-            else _context.Books.Update(bookEntity);
-            
-            await _context.SaveChangesAsync();
-            return Ok(bookEntity.id);
+            var bookFind = await _context.Books.FindAsync(bookEntity.id);
+
+            if (bookFind == null)
+            {
+                if (book.id == 0)
+                {
+                    int idEntity = 0;
+
+                    do
+                    {
+                        idEntity = new Faker().Random.Int();
+                    }
+                    while (await _context.Books.Select(x => x.id).ContainsAsync(idEntity));
+                    bookEntity.id = idEntity;
+                }
+                _context.Books.Add(bookEntity);
+                await _context.SaveChangesAsync();
+                return Ok(new { id = bookEntity.id });
+            }
+            else
+            {
+                bookFind.title = bookEntity.title;
+                bookFind.cover = bookEntity.cover;
+                bookFind.content = bookEntity.content;
+                bookFind.genre = bookEntity.genre;
+                bookFind.author = bookEntity.author;
+                await _context.SaveChangesAsync();
+                return Ok(new { id = bookFind.id });
+            }
         }
 
 
@@ -315,8 +337,18 @@ namespace Library.API.Controllers
             if (book == null) return NotFound();
             
             var reviewEntity = _mapper.Map<ReviewInput, Review>(review);
+            
+            int idEntity = 0;
 
+            do
+            {
+                idEntity = new Faker().Random.Int();
+            }
+            while (await _context.Books.AnyAsync(x => x.Reviews.Any(y => y.id == idEntity)));
+            reviewEntity.id = idEntity;
             book.Reviews.Add(reviewEntity);
+            
+            _context.Books.Update(book);
             return Ok();
         }
 
@@ -366,8 +398,8 @@ namespace Library.API.Controllers
             {
                 idEntity = new Faker().Random.Int();
             }
-            while (await _context.Books.Select(x => x.id).ContainsAsync(idEntity));
-                        
+            while (await _context.Books.AnyAsync(x => x.Ratings.Any(y => y.id == idEntity)));
+
             ratingEntity.id = idEntity;
             book.Ratings.Add(ratingEntity);
             await _context.SaveChangesAsync();

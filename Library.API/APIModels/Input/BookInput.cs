@@ -8,7 +8,7 @@ namespace Library.API.APIModels.Input
         public string title { get; set; }
         public string author { get; set; } 
         
-        [RegularExpression("data:image\\/(png|jpeg|gif);base64,(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?",
+        [RegularExpression("^data:image\\/[a-zA-Z]+;base64,([^\\s]+)$",
             ErrorMessage ="Invalid base64 image")]
         public string cover { get; set; }
         public string content { get; set; }

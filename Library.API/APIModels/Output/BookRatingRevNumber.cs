@@ -7,5 +7,6 @@
         public string author { get; set; }
         public decimal rating { get; set; }
         public decimal reviewsNumber { get; set; }
+        public string cover { get; set; }
     }
 }

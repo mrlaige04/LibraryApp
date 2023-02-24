@@ -7,11 +7,16 @@ class BookWithRatingAndRevsCount {
 
 
 class BookFullDetail {
-  constructor(public id: number, public title: string,
-              public author: string, public cover: string,
-              public content:string, public genre:string,
-              public reviews: Array<Review>) {
-  }
+
+  public id: number;
+  public title:string;
+  public author: string;
+  public cover: string;
+  public content: string;
+  public genre: string;
+  public reviews: Review[];
+  public rating: number;
+
 }
 
 class Review {
@@ -19,8 +24,5 @@ class Review {
   }
 }
 
-class Recommended {
-  constructor(public book: Array<BookWithRatingAndRevsCount>) {
-  }
-}
-export {BookWithRatingAndRevsCount, BookFullDetail, Review, Recommended}
+
+export {BookWithRatingAndRevsCount, BookFullDetail, Review}

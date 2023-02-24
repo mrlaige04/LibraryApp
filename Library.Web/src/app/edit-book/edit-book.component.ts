@@ -13,8 +13,8 @@ export class EditBookComponent {
   author = "";
   content = "";
 
-  clearForm(form: HTMLFormElement) {
-    form.reset()
+  clearForm() {
+
   }
 
 }

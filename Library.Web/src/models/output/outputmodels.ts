@@ -5,7 +5,6 @@ class CreateBook {
   }
 }
 
-
 class MakeARate {
   constructor(public rating: number) {
   }
