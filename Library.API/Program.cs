@@ -29,7 +29,8 @@ app.UseErrorHandler();
 app.UseCors(builder => builder
     .AllowAnyOrigin()
     .AllowAnyMethod()
-    .AllowAnyHeader());
+    .AllowAnyHeader()
+    );
 app.UseHttpsRedirection();
 
 app.MapControllers();

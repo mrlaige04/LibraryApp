@@ -13,7 +13,13 @@ import {ViewBookComponent} from "../view-book/view-book.component";
 export class BookListItemComponent {
   public toggle: boolean = false;
   @Input() book : BookWithRatingAndRevsCount
+  @Output() onEditClick = new EventEmitter<number>();
 
   constructor(private http: HttpService) {
+  }
+
+
+  editBook() {
+    this.onEditClick.emit(this.book.id);
   }
 }

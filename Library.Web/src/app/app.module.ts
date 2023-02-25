@@ -10,11 +10,12 @@ import { EditBookComponent } from './edit-book/edit-book.component';
 import { ViewBookComponent } from './view-book/view-book.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms";
 import { DeleteBookComponent } from './delete-book/delete-book.component';
 import {HttpService} from "./services/http.service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {ɵEmptyOutletComponent} from "@angular/router";
-
+import {ImageconverterService} from "./services/imageconverter.service";
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {ɵEmptyOutletComponent} from "@angular/router";
         BrowserAnimationsModule,
         FormsModule,
         ɵEmptyOutletComponent,
+        ReactiveFormsModule
     ],
   providers: [],
   bootstrap: [AppComponent]
