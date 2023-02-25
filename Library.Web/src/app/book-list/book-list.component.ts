@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {HttpService} from "../services/http.service";
 import {BookWithRatingAndRevsCount} from "../../models/input/inputmodels";
-import {map, Observable, tap} from "rxjs";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-book-list',
@@ -33,8 +33,15 @@ export class BookListComponent implements OnInit {
     this.changeToEditMode.emit(id);
   }
 
-  afterSubmit() {
+  updateBooks() {
     this.updateRecommended();
     this.updateAll();
+  }
+  afterSubmit() {
+    this.updateBooks();
+  }
+
+  onBookDelete() {
+    this.updateBooks();
   }
 }

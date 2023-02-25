@@ -1,13 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {CreateBook} from "../../models/output/outputmodels";
-import {ImageconverterService} from "../services/imageconverter.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {catchError, delay, map, tap} from "rxjs";
-import {FileChangeEvent} from "@angular/compiler-cli/src/perform_watch";
+import { map} from "rxjs";
 import {HttpService} from "../services/http.service";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {group} from "@angular/animations";
 
 @Component({
   selector: 'app-edit-book',
@@ -15,7 +9,6 @@ import {group} from "@angular/animations";
   styleUrls: ['./edit-book.component.css']
 })
 export class EditBookComponent implements OnInit{
-
   bookForm: FormGroup;
   srcImage: string;
   @Input() isEditMode: boolean = false;
@@ -28,7 +21,6 @@ export class EditBookComponent implements OnInit{
     genre: '',
     id: 0
   };
-
 
   @Input() selectedEditBookId: number;
   @Output() onSubmitted = new EventEmitter();
@@ -92,7 +84,6 @@ export class EditBookComponent implements OnInit{
     }
   }
 
-
   onEnableEditMode(id: number) {
     console.log("EDIT MODE ENABLED");
     console.log("BOOK ID: " + id);
@@ -133,5 +124,3 @@ export class EditBookComponent implements OnInit{
     this.selectedEditBookId = 0;
   }
 }
-
-

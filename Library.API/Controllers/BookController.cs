@@ -346,10 +346,18 @@ namespace Library.API.Controllers
             }
             while (await _context.Books.AnyAsync(x => x.Reviews.Any(y => y.id == idEntity)));
             reviewEntity.id = idEntity;
-            book.Reviews.Add(reviewEntity);
-            
-            _context.Books.Update(book);
-            return Ok();
+
+            /*book.Reviews.Add(reviewEntity);
+            _context.Books.Update(book);*/
+            await _context.Reviews.AddAsync(new Review()
+            {
+                bookId = book.id,
+                id = reviewEntity.id,
+                message = reviewEntity.message,
+                reviewer = reviewEntity.reviewer
+            });
+            await _context.SaveChangesAsync();
+            return Ok(idEntity);
         }
 
 

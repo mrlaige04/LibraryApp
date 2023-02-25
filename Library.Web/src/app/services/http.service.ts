@@ -2,7 +2,6 @@ import {HttpClient} from "@angular/common/http";
 import {BookFullDetail, BookWithRatingAndRevsCount} from "../../models/input/inputmodels";
 import {CreateBook, MakeARate, MakeAReview} from "../../models/output/outputmodels";
 import {Observable} from "rxjs";
-import {map} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable({
@@ -31,9 +30,9 @@ export class HttpService {
     return book;
   }
 
-  deleteBook(secret: string, id: number) {
-    let fullUrl: string = this.baseUrl + `/${id}?secret=${secret}`;
-    this.http.delete(fullUrl);
+  deleteBook(secret: string, id: number): Observable<any> {
+    let fullUrl: string = this.baseUrl + `/books/${id}?secret=${secret}`;
+    return this.http.delete(fullUrl);
   }
 
   saveBook(book: CreateBook): Observable<number> {

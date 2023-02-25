@@ -4,4 +4,6 @@
   </div>
     <app-edit-book (onSubmitted)="list.afterSubmit()" #editor></app-edit-book>
     <app-book-list #list (changeToEditMode)="editor.onEnableEditMode($event)"></app-book-list>
+
+    <app-delete-book (onDeleted)="list.onBookDelete()"></app-delete-book>
 </div>

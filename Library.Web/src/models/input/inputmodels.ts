@@ -5,9 +5,7 @@ class BookWithRatingAndRevsCount {
   }
 }
 
-
 class BookFullDetail {
-
   public id: number;
   public title:string;
   public author: string;
@@ -16,13 +14,11 @@ class BookFullDetail {
   public genre: string;
   public reviews: Review[];
   public rating: number;
-
 }
 
 class Review {
   constructor(public id: number, public message:string, public reviewer: string) {
   }
 }
-
 
 export {BookWithRatingAndRevsCount, BookFullDetail, Review}

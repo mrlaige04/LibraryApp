@@ -1,10 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output, AfterContentChecked, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BookFullDetail} from "../../models/input/inputmodels";
 import {HttpService} from "../services/http.service";
 import {map, Observable} from "rxjs";
-import {BookListItemComponent} from "../book-list-item/book-list-item.component";
-
-import {CreateBook} from "../../models/output/outputmodels";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
@@ -19,6 +16,8 @@ export class ViewBookComponent implements OnInit {
   book$: Observable<BookFullDetail>;
   @Output() onClose = new EventEmitter<boolean>();
 
+  isReviewMaking = false;
+
   constructor(private http: HttpService, private client: HttpClient) {
   }
 
@@ -30,10 +29,12 @@ export class ViewBookComponent implements OnInit {
     this.book$ = this.http.getBookDetail(id)
   }
 
-
-
-
   ngOnInit() : void {
     this.Open(this.id);
+  }
+
+  onAddReview() {
+    this.Open(this.id);
+    this.isReviewMaking = false;
   }
 }

@@ -1,9 +1,7 @@
 import {Component, ContentChild, ElementRef, EventEmitter, ViewChild} from '@angular/core';
 import {Input, Output} from "@angular/core";
-import {BookFullDetail, BookWithRatingAndRevsCount} from "../../models/input/inputmodels";
+import { BookWithRatingAndRevsCount} from "../../models/input/inputmodels";
 import {HttpService} from "../services/http.service";
-import {map, Observable} from "rxjs";
-import {ViewBookComponent} from "../view-book/view-book.component";
 
 @Component({
   selector: 'app-book-list-item',
@@ -17,7 +15,6 @@ export class BookListItemComponent {
 
   constructor(private http: HttpService) {
   }
-
 
   editBook() {
     this.onEditClick.emit(this.book.id);

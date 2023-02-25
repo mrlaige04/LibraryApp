@@ -5,7 +5,6 @@ import {Injectable} from "@angular/core";
 })
 export class ImageconverterService {
   convertFileToBase64(file: File): string {
-
     let reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function () {
