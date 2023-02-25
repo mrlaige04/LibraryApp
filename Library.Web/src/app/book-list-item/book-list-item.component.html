@@ -1,0 +1,17 @@
+<ng-container>
+<div [ngClass]="{notscrollable: toggle}" class="flex book-item h-full flex-row justify-evenly overflow-y-hidden mx-3 border rounded-lg p-3.5">
+  <div class="img-book-item w-max">
+    <img class="rounded-md h-[50px]  mr-0.5" [src]="book.cover" alt="img">
+  </div>
+  <div id="textblock" class="col-start-2 my-auto col-span-4 h-min mx-2.5 align-middle">
+    <h3 class="text-lg">{{book.title}}</h3>
+    <p >Review: {{book.reviewsNumber}} Rating: {{book.rating | number:'1.1-2'}}</p>
+  </div>
+  <div class="buttons flex flex-row flex-nowrap">
+
+    <i (click)="toggle = true;" class="fa-sharp h-max ml-0.5 border-2 p-2.5 rounded-md hover:cursor-pointer fa-solid fa-eye"></i>
+    <i (click)="editBook()" class="fa-solid h-max ml-0.5 border-2 p-2.5 rounded-md hover:cursor-pointer fa-pen"></i>
+    <app-view-book (onClose)="toggle = false;" *ngIf="toggle" #child [id]="book.id"></app-view-book>
+  </div>
+</div>
+</ng-container>

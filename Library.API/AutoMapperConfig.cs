@@ -18,6 +18,7 @@ namespace Library.API
             CreateMap<Book, BookRatingRevNumber>()
                 .ForMember(x => x.title, opt => opt.MapFrom(x => x.title))
                 .ForMember(x => x.author, opt => opt.MapFrom(x => x.author))
+                .ForMember(x => x.cover, opt => opt.MapFrom(x => x.cover))
                 .ForMember(x => x.rating, opt => opt.MapFrom(x => x.Ratings.Count() > 0 ? x.Ratings.ToList().Average(r => r.score) : 0))
                 .ForMember(x => x.reviewsNumber, opt => opt.MapFrom(x => x.Reviews.Count));
 
@@ -31,7 +32,8 @@ namespace Library.API
                 .ForMember(x => x.cover, opt => opt.MapFrom(x => x.cover))
                 .ForMember(x => x.content, opt => opt.MapFrom(x => x.content))
                 .ForMember(x => x.genre, opt => opt.MapFrom(x => x.genre))
-                .ForMember(x => x.reviews, opt => opt.MapFrom(x => x.Reviews));
+                .ForMember(x => x.reviews, opt => opt.MapFrom(x => x.Reviews))
+                .ForMember(x => x.rating, opt => opt.MapFrom(x => x.Ratings.Count() > 0 ? x.Ratings.ToList().Average(r => r.score) : 0));
         }
     }
 }

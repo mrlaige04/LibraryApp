@@ -1,0 +1,28 @@
+<ng-container>
+<div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
+    <li class="mr-2" role="presentation">
+      <button (click)="updateAll()" class="inline-block p-3.5 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">All</button>
+    </li>
+    <li class="mr-2" role="presentation">
+      <button (click)="updateRecommended()" class="inline-block p-3.5 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="dashboard-tab" data-tabs-target="#dashboard" type="button" role="tab" aria-controls="dashboard" aria-selected="false">Recommended</button>
+    </li>
+  </ul>
+</div>
+<div id="myTabContent" class="">
+  <div  class="hidden p-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="all flex items-stretch  flex-wrap flex-row">
+      <app-book-list-item (onEditClick)="onClickEditBook($event)" *ngFor="let book of allBooks$|async" [book]="book"></app-book-list-item>
+    </div>
+  </div>
+  <div class="hidden p-4" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+    <div class="all flex flex-wrap">
+      <app-book-list-item (onEditClick)="onClickEditBook($event)" *ngFor="let book of recommendedBooks$|async" [book]="book"></app-book-list-item>
+    </div>
+  </div>
+
+</div>
+</ng-container>
+
+
+

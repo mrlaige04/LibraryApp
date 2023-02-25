@@ -1,0 +1,8 @@
+:host {
+  margin: 5px 0;
+}
+
+.book-item {
+  flex-grow: 1 !important;
+  width: max-content;
+}

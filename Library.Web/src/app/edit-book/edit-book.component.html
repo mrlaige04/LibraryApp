@@ -1,0 +1,81 @@
+<ng-container>
+<div class="main p-5 border border-black-1000 rounded-md ">
+  <div class="heading">
+    <h2 class="m-0 p-0">{{isEditMode? "Edit" : "Add"}} book
+      <i *ngIf="isEditMode" (click)="disableEditMode(form)" class="fa-solid fa-circle-xmark hover:cursor-pointer"></i>
+    </h2>
+  </div>
+
+  <div class="hidden sm:block" aria-hidden="true">
+    <div class="py-5">
+      <div class="border-t border-gray-200"></div>
+    </div>
+  </div>
+  <div class="form">
+    <div class="mainform">
+      <form #form
+            [formGroup]="bookForm"
+            (ngSubmit)="onSubmit(form)"
+            class=" rounded px-8 pt-6 pb-8 mb-4">
+
+        <div class="inputs flex justify-evenly mb-5">
+          <div class="left w-1/3">
+            <div class="title-input">
+              <label for="title-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+              <input required
+                     type="text"
+                     formControlName="title"
+                     id="title-input"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="cover-input">
+              <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="file_input">Cover</label>
+              <input required #fileinput
+                     (change)="onFileChange($event, fileinput)"
+                     accept=".jpg,.jpeg,.png"
+                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                     id="file_input"
+                     type="file">
+            </div>
+            <div class="genre-input">
+              <label for="genre-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Genre</label>
+              <input required
+                     formControlName="genre"
+                     type="text"
+                     id="genre-input"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+            <div class="author-input">
+              <label for="author-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Author</label>
+              <input required
+                     formControlName="author"
+                     type="text"
+                     id="author-input"
+                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            </div>
+          </div>
+          <div class="right w-1/3">
+            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Your message</label>
+            <textarea required
+                      id="message"
+                      formControlName="content"
+                      rows="5" class="block oveflow-y-scroll resize-none p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" ></textarea>
+            <img [ngClass]="{'border':srcImage!='','p-2':srcImage!=''}"  [src]="srcImage" class="max-w-[120px] rounded-lg text-center mt-5" alt="">
+          </div>
+        </div>
+
+        <div class="actions flex justify-center">
+          <button type="submit"
+                  class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            {{isEditMode ? "Save" : "Add"}}
+          </button>
+          <button (click)="clearForm(form)"
+                  class="bg-transparent hover:bg-blue-500 ml-2 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</ng-container>
